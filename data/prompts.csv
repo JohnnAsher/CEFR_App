@@ -1,0 +1,13 @@
+id,cefr_min,cefr_max,topic,prompt_text
+1,A2,B1,Daily routine,Describe your morning routine on weekdays.
+2,A2,B1,Hobbies,What is your favorite hobby and why?
+3,B1,B2,Study habits,Do you prefer studying alone or with friends? Explain why.
+4,B1,B2,Travel,What’s the most memorable trip you’ve taken? Why?
+5,B1,B2,Technology,How has technology changed the way you learn?
+6,B2,C1,Work,Do you think people should work from home or in an office? Why?
+7,B2,C1,Social Media,What are the advantages and disadvantages of social media?
+8,B2,C1,Education,Should schools give more homework or less? Discuss.
+9,C1,C2,Global issues,Discuss the role of governments in addressing climate change.
+10,C1,C2,Technology,Do you think artificial intelligence will create more jobs or take them away?
+11,C1,C2,Health,Should healthcare be free for everyone? Why or why not?
+12,C1,C2,Ethics,Do you think animal testing should be banned? Support your answer.
