@@ -8,20 +8,19 @@ import csv
 import joblib
 import json
 from pathlib import Path
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
 
 # Helpers
-from helpers.features import tokenize, lexical_profile, text_profile
+from helpers.features import lexical_profile
 from helpers.predictions import predict_with_calibration, hybrid_score_lr, top_k_predictions
 from helpers.feedback import interpret_predictions, feature_based_feedback, word_count_feedback
 from helpers.logging_utils import log_submission, clear_log
 from helpers.calibration_wrappers import ModelWithTemperature, ModelWithVectorTemp
 from helpers.config import (
-    BASE_DIR, MODEL_NAME,
+    BASE_DIR,
     HYBRID_SCALER, HYBRID_LR,
-    WLIST, FEATURE_STATS_PATH,
+    FEATURE_STATS_PATH,
     PROMPTS_PATH, LOG_PATH,
-    LEVELS, device, word2level, weights
+    LEVELS, device, word2level, weights, load_model
 )
 
 # Ensure predictions_log.csv exists with header
@@ -33,12 +32,7 @@ if not LOG_PATH.exists():
 with open(FEATURE_STATS_PATH, "r") as f:
     FEATURE_STATS = pd.DataFrame(json.load(f))
 
-# HuggingFace model + tokenizer
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-base_model = AutoModelForSequenceClassification.from_pretrained(
-    MODEL_NAME,
-    torch_dtype=torch.float32
-).to(device)
+tokenizer, base_model = load_model()
 
 # --- Load calibration wrappers ---
 calib_global = ModelWithTemperature(base_model)
